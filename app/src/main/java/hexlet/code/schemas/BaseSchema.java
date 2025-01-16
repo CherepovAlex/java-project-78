@@ -21,5 +21,4 @@ public abstract class BaseSchema<T> {
         }
         return validations.values().stream().allMatch(value -> value.test(o));
     };
-
 }
