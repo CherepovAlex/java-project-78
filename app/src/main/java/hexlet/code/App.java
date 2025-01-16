@@ -69,61 +69,61 @@ public class App {
 //        System.out.println(schema4.isValid(4)); // false
 //        System.out.println(schema4.isValid(11)); // false
 //
-        System.out.println("Maps: ");
-        var v5 = new Validator();
-        var schema5 = v5.map();
-
-        System.out.println(schema5.isValid(null)); // true
-        System.out.println();
-        schema5.required();
-
-        System.out.println(schema5.isValid(null)); // false
-        System.out.println(schema5.isValid(new HashMap<>())); // true
-        var data = new HashMap<String, Object>();
-        data.put("key1", "value1");
-        System.out.println(schema5.isValid(data)); // true
-        System.out.println();
-        schema5.sizeof(2);
-
-        System.out.println(schema5.isValid(data));  // false
-        data.put("key2", "value2");
-        System.out.println(schema5.isValid(data)); // true
-
-        var v6 = new Validator();
-
-        var schema6 = v6.map();
-
-        // shape позволяет описывать валидацию для значений каждого ключа объекта Map
-        // Создаем набор схем для проверки каждого ключа проверяемого объекта
-        // Для значения каждого ключа - своя схема
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
-
-        // Определяем схемы валидации для значений свойств "firstName" и "lastName"
-        // Имя должно быть строкой, обязательно для заполнения
-        schemas.put("firstName", v6.string().required());
-        // Фамилия обязательна для заполнения и должна содержать не менее 2 символов
-        schemas.put("lastName", v6.string().required().minLength(2));
-
-        // Настраиваем схему `MapSchema`
-        // Передаем созданный набор схем в метод shape()
-        schema6.shape(schemas);
-
-        // Проверяем объекты
-        Map<String, Object> human1 = new HashMap<>();
-        human1.put("firstName", "John");
-        human1.put("lastName", "Smith");
-        System.out.println(schema6.isValid(human1)); // true
-        System.out.println();
-
-        Map<String, Object> human2 = new HashMap<>();
-        human2.put("firstName", "John");
-        human2.put("lastName", null);
-        System.out.println(schema6.isValid(human2)); // false
-        System.out.println();
-
-        Map<String, Object> human3 = new HashMap<>();
-        human3.put("firstName", "Anna");
-        human3.put("lastName", "B");
-        System.out.println(schema6.isValid(human3)); // false
+//        System.out.println("Maps: ");
+//        var v5 = new Validator();
+//        var schema5 = v5.map();
+//
+//        System.out.println(schema5.isValid(null)); // true
+//        System.out.println();
+//        schema5.required();
+//
+//        System.out.println(schema5.isValid(null)); // false
+//        System.out.println(schema5.isValid(new HashMap<>())); // true
+//        var data = new HashMap<String, Object>();
+//        data.put("key1", "value1");
+//        System.out.println(schema5.isValid(data)); // true
+//        System.out.println();
+//        schema5.sizeof(2);
+//
+//        System.out.println(schema5.isValid(data));  // false
+//        data.put("key2", "value2");
+//        System.out.println(schema5.isValid(data)); // true
+//
+//        var v6 = new Validator();
+//
+//        var schema6 = v6.map();
+//
+//        // shape позволяет описывать валидацию для значений каждого ключа объекта Map
+//        // Создаем набор схем для проверки каждого ключа проверяемого объекта
+//        // Для значения каждого ключа - своя схема
+//        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+//
+//        // Определяем схемы валидации для значений свойств "firstName" и "lastName"
+//        // Имя должно быть строкой, обязательно для заполнения
+//        schemas.put("firstName", v6.string().required());
+//        // Фамилия обязательна для заполнения и должна содержать не менее 2 символов
+//        schemas.put("lastName", v6.string().required().minLength(2));
+//
+//        // Настраиваем схему `MapSchema`
+//        // Передаем созданный набор схем в метод shape()
+//        schema6.shape(schemas);
+//
+//        // Проверяем объекты
+//        Map<String, Object> human1 = new HashMap<>();
+//        human1.put("firstName", "John");
+//        human1.put("lastName", "Smith");
+//        System.out.println(schema6.isValid(human1)); // true
+//        System.out.println();
+//
+//        Map<String, Object> human2 = new HashMap<>();
+//        human2.put("firstName", "John");
+//        human2.put("lastName", null);
+//        System.out.println(schema6.isValid(human2)); // false
+//        System.out.println();
+//
+//        Map<String, Object> human3 = new HashMap<>();
+//        human3.put("firstName", "Anna");
+//        human3.put("lastName", "B");
+//        System.out.println(schema6.isValid(human3)); // false
     }
 }
