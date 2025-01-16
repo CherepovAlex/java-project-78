@@ -2,7 +2,7 @@ package hexlet.code;
 
 public class App {
     public static void main(String[] args) {
-
+        System.out.println("Strings: ");
         var v1 = new Validator();
         var schema1 = v1.string().required().minLength(5).contains("hex");
 
@@ -35,5 +35,36 @@ public class App {
         var v3 = new Validator();
         var schema3 = v3.string();
         System.out.println(schema3.minLength(10).minLength(4).isValid("Hexlet")); // true
+
+        System.out.println("Numbers: ");
+        var v4 = new Validator();
+        var schema4 = v4.number();
+
+        System.out.println(schema4.isValid(5)); // true
+        System.out.println();
+        // Пока не вызван метод required(), null считается валидным
+        System.out.println(schema4.isValid(null)); // true
+        System.out.println(schema4.positive().isValid(null)); // true
+        System.out.println();
+
+        schema4.required();
+
+        System.out.println(schema4.isValid(null)); // false
+        System.out.println(schema4.isValid(10)); // true
+        System.out.println();
+        // Потому что ранее мы вызвали метод positive()
+        System.out.println(schema4.isValid(-10)); // false
+        //  Ноль — не положительное число
+        System.out.println(schema4.isValid(0)); // false
+        System.out.println();
+        schema4.range(5, 10);
+
+        System.out.println(schema4.isValid(5)); // true
+        System.out.println(schema4.isValid(10)); // true
+        System.out.println(schema4.isValid(4)); // false
+        System.out.println(schema4.isValid(11)); // false
+
+
+
     }
 }
