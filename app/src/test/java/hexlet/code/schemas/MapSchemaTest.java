@@ -40,10 +40,10 @@ class MapSchemaTest {
 
     @Test
     void combination() {
-        var schema = validator.map().required().sizeof(2);
-        assertEquals(false, schema.isValid(map1));
-        assertEquals(false, schema.isValid(null));
-        assertEquals(true, schema.isValid(map2));
+        var schema1 = validator.map().required().sizeof(2);
+        assertEquals(false, schema1.isValid(map1));
+        assertEquals(false, schema1.isValid(null));
+        assertEquals(true, schema1.isValid(map2));
     }
 
     @Test
