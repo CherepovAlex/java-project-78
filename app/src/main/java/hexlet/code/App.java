@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import java.util.HashMap;
+
 public class App {
     public static void main(String[] args) {
         System.out.println("Strings: ");
@@ -64,7 +66,25 @@ public class App {
         System.out.println(schema4.isValid(4)); // false
         System.out.println(schema4.isValid(11)); // false
 
+        System.out.println("Maps: ");
+        var v5 = new Validator();
+        var schema5 = v5.map();
 
+        System.out.println(schema5.isValid(null)); // true
+        System.out.println();
+        schema5.required();
+
+        System.out.println(schema5.isValid(null)); // false
+        System.out.println(schema5.isValid(new HashMap<>())); // true
+        var data = new HashMap<String, String>();
+        data.put("key1", "value1");
+        System.out.println(schema5.isValid(data)); // true
+        System.out.println();
+        schema5.sizeof(2);
+
+        System.out.println(schema5.isValid(data));  // false
+        data.put("key2", "value2");
+        System.out.println(schema5.isValid(data)); // true
 
     }
 }
