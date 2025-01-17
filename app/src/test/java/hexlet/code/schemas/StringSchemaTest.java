@@ -20,6 +20,7 @@ class StringSchemaTest {
     void minLength() {
         var schema = new StringSchema().minLength(5);
         assertEquals(true, schema.isValid("hexlet"));
+        assertEquals(true, schema.isValid("hello"));
         assertEquals(false, schema.isValid("who"));
         assertEquals(true, schema.isValid(null));
         assertEquals(true, schema.isValid(""));
@@ -38,6 +39,7 @@ class StringSchemaTest {
         var v = new Validator();
         var schema = v.string().required().minLength(10).minLength(4).contains("xl");
         assertEquals(true, schema.isValid("hexlet"));
+        assertEquals(false, schema.isValid("hi"));
         assertEquals(false, schema.isValid(null));
         assertEquals(false, schema.isValid(""));
     }

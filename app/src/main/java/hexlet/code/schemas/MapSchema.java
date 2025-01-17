@@ -24,6 +24,9 @@ public class MapSchema extends BaseSchema<Map<String, Object>> {
                             return false;
                         }
                         T value = (T) map.get(key);
+                        if (value == null) {
+                            return false;
+                        }
                         return schema.isValid(value);
                     });
                 }

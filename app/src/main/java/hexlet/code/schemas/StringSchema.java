@@ -13,7 +13,7 @@ public class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema contains(String str) {
-        addValidation("contains", o -> o.contains(str));
+        addValidation("contains", o -> o != null && o.contains(str));
         return this;
     }
 }

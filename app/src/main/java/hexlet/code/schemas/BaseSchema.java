@@ -12,13 +12,14 @@ public abstract class BaseSchema<T> {
         this.validations.put(key, validation);
     }
 
-    public boolean isValid(T o) {
-        if (validations.containsKey("required") && (o == null || o.equals(""))) {
+    public boolean isValid(T value) {
+        if (validations.containsKey("required") && (value == null
+                || (value instanceof String && ((String) value).isEmpty()))) {
             return false;
         }
-        if (o == null || o.equals("")) {
+        if (value == null || (value instanceof String && ((String) value).isEmpty())) {
             return true;
         }
-        return validations.values().stream().allMatch(value -> value.test(o));
+        return validations.values().stream().allMatch(predicate -> predicate.test(value));
     };
 }

@@ -30,6 +30,7 @@ class MapSchemaTest {
         assertEquals(true, schema.isValid(map2));
         assertEquals(true, schema.isValid(null));
         assertEquals(false, schema.isValid(map1));
+        assertEquals(false, schema.isValid(Map.of()));
     }
 
     @Test
