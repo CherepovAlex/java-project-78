@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 
-public class MapSchema extends BaseSchema<Map<String, ?>> {
+public final class MapSchema extends BaseSchema<Map<String, ?>> {
 
     public MapSchema required() {
         addValidation("required", o -> o != null);
