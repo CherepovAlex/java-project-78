@@ -38,11 +38,10 @@ public abstract class BaseSchema<T> {
      *
      */
     public boolean isValid(T value) {
-        if (validations.containsKey("required") && (value == null
-                || (value instanceof String && ((String) value).isEmpty()))) {
+        if (validations.containsKey("required") && (value == null)) {
             return false;
         }
-        if (value == null || (value instanceof String && ((String) value).isEmpty())) {
+        if (value == null) {
             return true;
         }
         return validations.values().stream().allMatch(predicate -> predicate.test(value));

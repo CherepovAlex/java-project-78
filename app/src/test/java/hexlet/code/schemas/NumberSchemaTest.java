@@ -28,7 +28,9 @@ class NumberSchemaTest {
 
     @Test
     void required() {
-        var schema = new NumberSchema().required();
+        var schema = new NumberSchema();
+        assertEquals(true, schema.isValid(null));
+        schema.required();
         assertEquals(true, schema.isValid(1));
         assertEquals(false, schema.isValid(null));
         assertEquals(true, schema.isValid(0));
@@ -44,12 +46,4 @@ class NumberSchemaTest {
         assertEquals(false, schema.isValid(6));
     }
 
-    @Test
-    void beforeAndAfter() {
-        var schema = new NumberSchema();
-        assertEquals(true, schema.isValid(null));
-        schema.required();
-        assertEquals(false, schema.isValid(null));
-        assertEquals(true, schema.isValid(10));
-    }
 }

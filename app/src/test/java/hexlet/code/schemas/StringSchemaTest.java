@@ -13,7 +13,7 @@ class StringSchemaTest {
         assertEquals(true, schema.isValid("what does the fox say"));
         assertEquals(false, schema.isValid("hexlet"));
         assertEquals(true, schema.isValid(null));
-        assertEquals(true, schema.isValid(""));
+        assertEquals(false, schema.isValid(""));
     }
 
     @Test
@@ -23,12 +23,14 @@ class StringSchemaTest {
         assertEquals(true, schema.isValid("hello"));
         assertEquals(false, schema.isValid("who"));
         assertEquals(true, schema.isValid(null));
-        assertEquals(true, schema.isValid(""));
+        assertEquals(false, schema.isValid(""));
     }
 
     @Test
     void required() {
-        var schema = new StringSchema().required();
+        var schema = new StringSchema();
+        assertEquals(true, schema.isValid(null));
+        schema.required();
         assertEquals(true, schema.isValid("hexlet"));
         assertEquals(false, schema.isValid(null));
         assertEquals(false, schema.isValid(""));
@@ -42,14 +44,5 @@ class StringSchemaTest {
         assertEquals(false, schema.isValid("hi"));
         assertEquals(false, schema.isValid(null));
         assertEquals(false, schema.isValid(""));
-    }
-
-    @Test
-    void beforeAndAfter() {
-        var schema = new StringSchema();
-        assertEquals(true, schema.isValid(null));
-        schema.required();
-        assertEquals(false, schema.isValid(null));
-        assertEquals(true, schema.isValid("hex"));
     }
 }
