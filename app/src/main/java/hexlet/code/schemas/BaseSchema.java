@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 public abstract class BaseSchema<T> {
 
     private Map<String, Predicate<T>> validations = new HashMap<>();
+
     /**
      * Adds a validation rule to the schema.
      * <p>
@@ -46,4 +47,5 @@ public abstract class BaseSchema<T> {
         }
         return validations.values().stream().allMatch(predicate -> predicate.test(value));
     };
+
 }

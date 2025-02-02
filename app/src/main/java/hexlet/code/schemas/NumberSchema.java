@@ -9,13 +9,14 @@ public final class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
 
+
     public NumberSchema range(int min, int max) {
         addValidation("maxValue", o -> min <= o && o <= max);
         return this;
     }
 
     public NumberSchema positive() {
-        addValidation("positive", o -> o == null || o > 0);
+        addValidation("positive", o -> o > 0);
         return this;
     }
 }
