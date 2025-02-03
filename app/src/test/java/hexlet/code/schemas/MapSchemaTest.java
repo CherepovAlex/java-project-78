@@ -23,7 +23,7 @@ class MapSchemaTest {
         assertEquals(false, schema.isValid(map1));
         assertEquals(false, schema.isValid(Map.of()));
 
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String, ?>> schemas = new HashMap<>();
         schemas.put("key1", validator.string().required());
         schemas.put("key2", validator.string().required());
         var nestedSchema = validator.map().shape(schemas);
@@ -51,7 +51,7 @@ class MapSchemaTest {
         assertEquals(true, schema.isValid(map));
         assertEquals(false, schema.isValid(null));
 
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String, ?>> schemas = new HashMap<>();
         schemas.put("key1", validator.string().required());
         var nestedSchema = validator.map().shape(schemas);
 
@@ -67,7 +67,7 @@ class MapSchemaTest {
         Validator validator = new Validator();
         var schema = validator.map();
 
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String, ?>> schemas = new HashMap<>();
         schemas.put("firstName", validator.string().required().contains("hn"));
         schemas.put("lastName", validator.string().required().minLength(2));
 
@@ -93,7 +93,7 @@ class MapSchemaTest {
         assertEquals(false, schema.isValid(invalidMap2));
         assertEquals(false, schema.isValid(invalidMap3));
 
-        Map<String, BaseSchema<String>> nestedSchemas = new HashMap<>();
+        Map<String, BaseSchema<String, ?>> nestedSchemas = new HashMap<>();
         nestedSchemas.put("firstName", validator.string().required().contains("hn"));
         nestedSchemas.put("lastName", validator.string().required().minLength(2));
 
@@ -123,7 +123,7 @@ class MapSchemaTest {
         assertEquals(false, schema.isValid(null));
         assertEquals(true, schema.isValid(map2));
 
-        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String, ?>> schemas = new HashMap<>();
         schemas.put("key1", validator.string().required());
         schemas.put("key2", validator.string().required());
 

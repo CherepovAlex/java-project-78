@@ -1,17 +1,9 @@
 package hexlet.code.schemas;
 
-import java.util.Objects;
-
-public final class NumberSchema extends BaseSchema<Integer> {
-
-    public NumberSchema required() {
-        addValidation("required", Objects::nonNull);
-        return this;
-    }
-
+public final class NumberSchema extends BaseSchema<Integer, NumberSchema> {
 
     public NumberSchema range(int min, int max) {
-        addValidation("maxValue", o -> min <= o && o <= max);
+        addValidation("range", o -> min <= o && o <= max);
         return this;
     }
 
