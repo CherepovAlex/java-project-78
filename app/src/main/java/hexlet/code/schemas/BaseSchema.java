@@ -2,16 +2,15 @@ package hexlet.code.schemas;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Predicate;
 /**
  * BaseSchema is an abstract class that provides a foundation for creating validation schemas.
  * It allows adding validation rules and checking if a value satisfies all the rules.
  *
  * @param <T> the type of value to be validated
- * @param <S> the self-type parameter allowing methods to return an instance of the current class
+// * @param <S> the self-type parameter allowing methods to return an instance of the current class
  */
-public abstract class BaseSchema<T, S extends BaseSchema<T, S>> {
+public abstract class BaseSchema<T> {
 
     private Map<String, Predicate<T>> validations = new HashMap<>();
     /**
@@ -28,16 +27,16 @@ public abstract class BaseSchema<T, S extends BaseSchema<T, S>> {
     protected void addValidation(String key, Predicate<T> validation) {
         this.validations.put(key, validation);
     }
-    /**
-     * There is added rule, value can't be null.
-     *
-     * @return is object of schema for chaining
-     */
-    @SuppressWarnings("unchecked")
-    public S required() {
-        addValidation("required", Objects::nonNull);
-        return (S) this;
-    }
+//    /**
+//     * There is added rule, value can't be null.
+//     *
+//     * @return is object of schema for chaining
+//     */
+//    @SuppressWarnings("unchecked")
+//    public S required() {
+//        addValidation("required", Objects::nonNull);
+//        return (S) this;
+//    }
     /**
      * Validates the given value against all the validation rules in the schema.
      * <p>
